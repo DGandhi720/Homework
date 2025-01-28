@@ -1,0 +1,38 @@
+import java.util.Scanner;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        Random randomgenerated = new Random();
+        int randomNumber = randomgenerated.nextInt(10) + 1; 
+
+        int maxAttempts = 5;
+        
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("A random number between 1-10 has been chosen.");
+        System.out.println("There are 5 guesses that you can do.");
+
+        boolean hasWon = false;
+
+        for (int attempt = 1; attempt <= maxAttempts; attempt++) {
+            System.out.print("Enter your guess: ");
+            int userGuess = scanner.nextInt();
+
+            if (userGuess == randomNumber) {
+                System.out.println("That's the correct number.");
+                hasWon = true;
+                break;
+            } else if (userGuess > randomNumber) {
+                System.out.println("Too high, try again.");
+            } else {
+                System.out.println("Too low, try again.");
+            }
+        }
+
+        if (!hasWon) {
+            System.out.println("You did not guess correctly, The correct number was " + randomNumber + ".");
+        }
+
+    }
+}
