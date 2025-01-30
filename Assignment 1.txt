@@ -33,6 +33,7 @@ public class Main {
         if (!hasWon) {
             System.out.println("You did not guess correctly, The correct number was " + randomNumber + ".");
         }
+            scanner.close();
 
     }
 }
