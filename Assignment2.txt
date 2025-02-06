@@ -39,10 +39,11 @@ public class Bank {
     }
      public static void main(String[] args) {
          Bank newTotal = new Bank(100.0);
-         System.out.println("Bank total before a withdrawal: " + newTotal.getBalance());
+         System.out.println("Current Bank Balance: " + newTotal.getBalance());
          newTotal.withdraw(50.0);
-         System.out.println("Bank total after a withdrawal:  " + newTotal.getBalance());
+         newTotal.listInteractions();
+         System.out.println("Current Bank Balance: " + newTotal.getBalance());
          newTotal.deposit(150.0);
-         System.out.println("Bank total after a deposit:  " + newTotal.getBalance());
+         System.out.println("Current Bank Balance: " + newTotal.getBalance());
     }
 }
