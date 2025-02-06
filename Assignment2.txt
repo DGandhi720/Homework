@@ -1,0 +1,48 @@
+public class Bank {
+    private double amount;
+    private double[] interactions;  
+    private int interactionCount;  
+
+    
+    public Bank(double initialAmount) {
+        this.amount = initialAmount;
+        this.interactions = new double[100]; 
+        this.interactionCount = 0;
+    }
+
+ 
+    public void deposit(double depositAmount) {
+        this.amount += depositAmount;  
+        interactions[interactionCount++] = depositAmount;  
+    }
+
+    
+    public void withdraw(double withdrawalAmount) {
+        this.amount -= withdrawalAmount;  
+        interactions[interactionCount++] = -withdrawalAmount;  
+    }
+
+    public void listInteractions() {
+        System.out.println("Bank Transactions:");
+        for (int i = 0; i < interactionCount; i++) {
+            if (interactions[i] > 0) {
+                System.out.println("Deposit: " + interactions[i]);
+            } else {
+                System.out.println("Withdrawal: " + interactions[i]);
+            }
+        }
+    }
+
+   
+    public double getBalance() {
+        return this.amount;
+    }
+     public static void main(String[] args) {
+         Bank newTotal = new Bank(100.0);
+         System.out.println("Bank total before a withdrawal: " + newTotal.getBalance());
+         newTotal.withdraw(50.0);
+         System.out.println("Bank total after a withdrawal:  " + newTotal.getBalance());
+         newTotal.deposit(150.0);
+         System.out.println("Bank total after a deposit:  " + newTotal.getBalance());
+    }
+}
