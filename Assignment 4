@@ -1,0 +1,58 @@
+public class Shape {
+    private int numberOfSides;
+
+    public Shape(int numberOfSides) {
+        this.numberOfSides = numberOfSides;
+    }
+
+    
+    public int getNumberOfSides() {
+        return numberOfSides;
+    }
+
+ 
+    public void setNumberOfSides(int numberOfSides) {
+        this.numberOfSides = numberOfSides;
+    }
+}
+
+
+class Circle extends Shape {
+    private double radius;
+
+    
+    public Circle(double radius) {
+        super(0);
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+}
+
+
+class Rectangle extends Shape {
+    private double length, width;
+
+    public Rectangle(double length, double width) {
+        super(4); 
+        this.length = length;
+        this.width = width;
+    }
+
+    public double getArea() {
+        return length * width;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Circle circle = new Circle(5.0);
+        System.out.println("Circle has " + circle.getNumberOfSides() + " sides.");
+
+        Rectangle rectangle = new Rectangle(10.0, 5.0);
+        System.out.println("Rectangle has " + rectangle.getNumberOfSides() + " sides.");
+    }
+}
