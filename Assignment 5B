@@ -1,0 +1,52 @@
+/* The person's job changing is tested in the PersonJobTest Class. */
+public class Person {
+    private String name;
+    private String job;
+
+    public Person(String name, String job) {
+        this.name = name;
+        this.job = job;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getJob() {
+        return job;
+    }
+    public void changeJob(String newJob) {
+
+        this.job = newJob;
+    }
+
+    @Override
+    public String toString() {
+        return name + " works as a " + job;
+    }
+   public static void main(String[] args) {
+  
+        Person person = new Person("Bob", "Teacher");
+
+        System.out.println("Before changing job: " + person);
+
+        person.changeJob("Software Developer");
+
+        System.out.println("After changing job: " + person);
+
+    }
+}
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+public class PersonJobTest {
+
+    @Test
+    public void testChangeJob() {
+        Person person = new Person("Bob", "Teacher");
+        
+        person.changeJob("Software Developer");
+        
+        assertEquals("Software Developer", person.getJob(), "The job should be updated to Software Developer.");
+    }
+}
