@@ -1,0 +1,51 @@
+package assignment6;
+
+import java.awt.*;
+import java.awt.event.*;
+
+public class EmployeeInfoForm {
+    public static void main(String[] args) {
+    	
+        Frame frame = new Frame("Employee Information Form");
+
+        Label nameLabel = new Label("Your Name:");
+        TextField nameField = new TextField();
+        Label idLabel = new Label("What is your employee ID?:");
+        TextField idField = new TextField();
+        Label deptLabel = new Label("What Department are you from?:");
+        TextField deptField = new TextField();
+        Button submitButton = new Button("Confirm");
+        TextArea displayArea = new TextArea();
+        displayArea.setEditable(false);
+        frame.setLayout(new GridLayout(4, 0));
+
+        frame.add(nameLabel);
+        frame.add(nameField);
+        frame.add(idLabel);
+        frame.add(idField);
+        frame.add(deptLabel);
+        frame.add(deptField);
+        frame.add(submitButton);
+        frame.add(displayArea);
+
+        submitButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String name = nameField.getText();
+                
+                String employeeId = idField.getText();
+                
+                String department = deptField.getText();
+                
+                displayArea.setText("Name: " + name + "," + " Employee ID: " + employeeId + "," + " Department: " + department);
+            }
+        });
+        frame.setSize(1280, 720);
+        frame.setVisible(true);
+        frame.addWindowListener(new WindowAdapter() {
+        	
+            public void windowClosing(WindowEvent we) {
+                System.exit(0);
+            }
+        });
+    }
+}
