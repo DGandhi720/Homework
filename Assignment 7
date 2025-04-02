@@ -21,8 +21,6 @@ class RegistrationForm extends JFrame {
         setSize(300, 250);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new GridLayout(5, 2, 5, 5));
-
-        // Labels
         add(new JLabel("Name:"));
         nameField = new JTextField();
         add(nameField);
@@ -39,7 +37,6 @@ class RegistrationForm extends JFrame {
         confirmPasswordField = new JPasswordField();
         add(confirmPasswordField);
 
-        // Buttons
         submitButton = new JButton("Submit");
         clearButton = new JButton("Clear");
 
@@ -82,3 +79,4 @@ class RegistrationForm extends JFrame {
         }
     }
 }
+
