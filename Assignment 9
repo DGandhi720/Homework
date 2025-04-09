@@ -1,0 +1,71 @@
+package assignment6;
+import java.util.*;
+/*Using assignment 6 as my package as it is easier for me to setup the program */
+
+public class DrawingApp {
+    public static void main(String[] args) {
+        Shape redCircle = new Circle(new Color("red"));
+        Shape blueRectangle = new Rectangle(new Color("blue"));
+        Shape greenCircle = new Circle(new Color("green"));
+
+        List<Shape> shapes = Arrays.asList(redCircle, blueRectangle, greenCircle);
+
+        Canvas canvas = new Canvas();
+        canvas.drawAll(shapes);
+    }
+}
+
+class Color {
+    private String name;
+
+    public Color(String name) {
+        this.name = name;
+    }
+
+    public String getColorName() {
+        return name;
+    }
+}
+
+
+abstract class Shape {
+    protected Color color;
+
+    public Shape(Color color) {
+        this.color = color;
+    }
+
+    public abstract void draw();
+}
+
+
+class Circle extends Shape {
+    public Circle(Color color) {
+        super(color);
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing a " + color.getColorName() + " circle.");
+    }
+}
+
+
+class Rectangle extends Shape {
+    public Rectangle(Color color) {
+        super(color);
+    }
+
+    @Override
+    public void draw() {
+        System.out.println("Drawing a " + color.getColorName() + " rectangle.");
+    }
+}
+
+class Canvas {
+    public void drawAll(List<Shape> shapes) {
+        for (Shape s : shapes) {
+            s.draw();
+        }
+    }
+}
