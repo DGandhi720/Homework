@@ -1,4 +1,4 @@
-/* Abstract Method Example */
+/* Abstract Example */
 abstract class Repairman {
     void clockIn() {
         System.out.println("Repairman clocked in.");
