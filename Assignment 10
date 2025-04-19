@@ -35,6 +35,18 @@ class HouseCat implements Cat {
     @Override
     public void scratch() {
         System.out.println("Scratches the furniture.");
+}
+ 
+class RobotCat implements Cat {
+    @Override
+    public void meow() {
+        System.out.println("Mechanical meow activated.");
+    }
+
+    @Override
+    public void scratch() {
+        System.out.println("Extends robotic claws.");
     }
  }
+}
 }
