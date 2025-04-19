@@ -1,0 +1,40 @@
+/* Abstract Method Example */
+abstract class Repairman {
+    void clockIn() {
+        System.out.println("Repairman clocked in.");
+    }
+
+    abstract void performRepair();
+}
+
+class Electrician extends Repairman {
+    @Override
+    void performRepair() {
+        System.out.println("Fixing Electricity. ");
+    }
+}
+class Plumber extends Repairman {
+    @Override
+    void performRepair() {
+        System.out.println("Fixing the Plumbing system.");
+    }
+}
+
+/* Interface example */
+interface Cat {
+    void meow();
+    void scratch();
+}
+
+class HouseCat implements Cat {
+    @Override
+    public void meow() {
+        System.out.println("Meow!");
+    }
+
+    @Override
+    public void scratch() {
+        System.out.println("Scratches the furniture.");
+    }
+ }
+}
