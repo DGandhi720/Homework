@@ -1,0 +1,162 @@
+package assignmentspackage;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+
+abstract class Product {
+    protected int id;
+    protected String name;
+    protected double price;
+
+    public Product(int id, String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public double getPrice() { return price; }
+    public String getName() { return name; }
+    public int getId() { return id; }
+
+    public abstract String getCategory();
+}
+
+class Electronics extends Product {
+    public Electronics(int id, String name, double price) {
+        super(id, name, price);
+    }
+
+    @Override
+    public String getCategory() {
+        return "Electronics";
+    }
+}
+
+class Clothing extends Product {
+    public Clothing(int id, String name, double price) {
+        super(id, name, price);
+    }
+
+    @Override
+    public String getCategory() {
+        return "Clothing";
+    }
+}
+
+class Grocery extends Product {
+    public Grocery(int id, String name, double price) {
+        super(id, name, price);
+    }
+
+    @Override
+    public String getCategory() {
+        return "Grocery";
+    }
+}
+abstract class User {
+    protected int userId;
+    protected String username;
+
+    public User(int userId, String username) {
+        this.userId = userId;
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+}
+
+class Customer extends User {
+    public Customer(int userId, String username) {
+        super(userId, username);
+    }
+}
+
+class Admin extends User {
+    public Admin(int userId, String username) {
+        super(userId, username);
+    }
+}
+class Order {
+    private Customer customer;
+    private List<Product> products;
+
+    public Order(Customer customer) {
+        this.customer = customer;
+        this.products = new ArrayList<>();
+    }
+
+    public void addProduct(Product product) {
+        products.add(product);
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public double calculateTotal(Function<Double, Double> taxAndShippingCalculator) {
+        double subtotal = products.stream().mapToDouble(Product::getPrice).sum();
+        return taxAndShippingCalculator.apply(subtotal);
+    }
+
+    public void printOrderDetails() {
+        System.out.println("Order for: " + customer.getUsername());
+        products.forEach(p -> System.out.println("- " + p.getName() + " ($" + p.getPrice() + ")"));
+    }
+}
+public class ECommercePlatform {
+    public static void main(String[] args) {
+        System.out.println("Hello, Thank you for shopping with E-Commerce Industries. Here is what is in stock: ");
+        List<Product> productList = List.of(
+            new Electronics(1, "Beginner Desktop", 999),
+            new Electronics(2, "Headphones", 149.99),
+            
+            new Clothing(3, "Women's T-Shirt", 24.99),         
+            new Clothing(4, "Men's T-Shirt", 24.99),
+           
+            new Grocery(5, "Apple", 1.39),           
+            new Grocery(6, "Milk", 1.99)
+        );
+
+        
+        List<Product> electronicsOnly = productList.stream()
+            .filter(p -> p.getCategory().equals("Electronics"))
+            .collect(Collectors.toList());
+
+        System.out.println("Electronics:");
+        electronicsOnly.forEach(p -> System.out.println("- " + p.getName()));
+
+        System.out.println("\nIt seems you are searching for something. Please enter down below: \n ");
+        String searchTerm = "Milk";
+        productList.stream()
+            .filter(p -> p.getName().equalsIgnoreCase(searchTerm))
+            .forEach(p -> System.out.println("Found: " + p.getName() + "\n"));
+
+        System.out.println("Here are our products, filtered by lowest to highest price: \n ");
+        System.out.println("Sorted by price:");
+        productList.stream()
+            .sorted(Comparator.comparingDouble(Product::getPrice))
+            .forEach(p -> System.out.println("- " + p.getName() + " $" + p.getPrice()));
+
+        
+        Customer customer = new Customer(1, "Dhrew");
+        Order order = new Order(customer);
+        
+        order.addProduct(productList.get(0)); 
+        
+        order.addProduct(productList.get(3)); 
+        
+        order.addProduct(productList.get(5)); 
+
+        
+        Function<Double, Double> taxAndShipping = subtotal -> subtotal * 1.1 + 5;
+
+        double total = order.calculateTotal(taxAndShipping);
+
+        order.printOrderDetails();
+        System.out.println("Total (with tax + shipping): $" + total);
+        System.out.println("Thank you for shopping with us, " + customer.getUsername());
+    }
+}
